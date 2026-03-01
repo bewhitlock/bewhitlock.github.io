@@ -4,20 +4,33 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Your Name | Electrical Engineering</title>
+
 <style>
 html { scroll-behavior: smooth; }
 body {
     margin: 0;
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-    background: #0f172a;
     color: #e2e8f0;
+    overflow-x: hidden;
+    background: #0f172a;
 }
+
+/* Animated canvas background */
+#bg {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: -1;
+}
+
+/* Content styling */
 nav {
     position: fixed;
     width: 100%;
-    background: rgba(15,23,42,0.95);
     padding: 15px 0;
     text-align: center;
+    background: rgba(15,23,42,0.8);
+    backdrop-filter: blur(6px);
 }
 nav a {
     color: #94a3b8;
@@ -38,20 +51,19 @@ section {
     padding-top: 160px;
 }
 .hero h1 { font-size: 3rem; margin-bottom: 10px; }
-.hero h2 { font-weight: 400; color: #94a3b8; margin-bottom: 20px; }
+.hero h2 { font-weight: 400; color: #94a3b8; }
 
 .grid {
     display: grid;
     gap: 25px;
-}
-.projects {
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
 }
 
 .card {
-    background: #1e293b;
+    background: rgba(30,41,59,0.8);
     border-radius: 10px;
     overflow: hidden;
+    backdrop-filter: blur(6px);
     transition: transform 0.2s ease;
 }
 .card:hover { transform: scale(1.03); }
@@ -62,100 +74,123 @@ section {
     object-fit: cover;
 }
 
-.card-content {
-    padding: 20px;
-}
-
-.skills {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 15px;
-}
-.skill {
-    background: #1e293b;
-    padding: 10px 18px;
-    border-radius: 20px;
-    font-size: 0.9rem;
-}
+.card-content { padding: 20px; }
 
 footer {
     text-align: center;
     padding: 60px 20px;
     font-size: 0.9rem;
     color: #64748b;
-    border-top: 1px solid #1e293b;
 }
 </style>
 </head>
 <body>
 
+<canvas id="bg"></canvas>
+
 <nav>
     <a href="#projects">Projects</a>
-    <a href="#skills">Skills</a>
     <a href="#contact">Contact</a>
 </nav>
 
 <section class="hero">
     <h1>Your Name</h1>
     <h2>Electrical Engineering Student</h2>
-    <p>Sophomore at Northern Illinois University focused on hardware, embedded systems, and power design.</p>
+    <p>Sophomore at Northern Illinois University building embedded and hardware systems.</p>
 </section>
 
 <section id="projects">
     <h3>Projects</h3>
-    <div class="grid projects">
-        
+    <div class="grid">
         <div class="card">
             <img src="https://picsum.photos/600/400?1">
             <div class="card-content">
                 <strong>Embedded Sensor System</strong>
-                <p>Microcontroller-based data acquisition.</p>
+                <p>Microcontroller data acquisition.</p>
             </div>
         </div>
-
         <div class="card">
             <img src="https://picsum.photos/600/400?2">
             <div class="card-content">
-                <strong>DC Power Supply</strong>
-                <p>Custom regulated power design.</p>
+                <strong>Power Supply Design</strong>
+                <p>Custom regulated DC system.</p>
             </div>
         </div>
-
-        <div class="card">
-            <img src="https://picsum.photos/600/400?3">
-            <div class="card-content">
-                <strong>Digital Logic Build</strong>
-                <p>Sequential logic hardware implementation.</p>
-            </div>
-        </div>
-
     </div>
-</section>
-
-<section id="skills">
-    <h3>Core Skills</h3>
-    <div class="skills">
-        <div class="skill">Circuit Analysis</div>
-        <div class="skill">C / C++</div>
-        <div class="skill">Python</div>
-        <div class="skill">MATLAB</div>
-        <div class="skill">LTspice</div>
-        <div class="skill">Embedded Systems</div>
-        <div class="skill">Oscilloscopes</div>
-        <div class="skill">Soldering</div>
-    </div>
-</section>
-
-<section id="contact">
-    <h3>Contact</h3>
-    <p>Email: yourname@email.com</p>
-    <p>GitHub: github.com/yourusername</p>
-    <p>LinkedIn: linkedin.com/in/yourname</p>
 </section>
 
 <footer>
     © 2026 Your Name
 </footer>
+
+<script>
+const canvas = document.getElementById("bg");
+const ctx = canvas.getContext("2d");
+
+canvas.width = window.innerWidth;
+canvas.height = window.innerHeight;
+
+let particles = [];
+const num = 70;
+
+class Particle {
+    constructor() {
+        this.x = Math.random() * canvas.width;
+        this.y = Math.random() * canvas.height;
+        this.vx = (Math.random() - 0.5) * 0.7;
+        this.vy = (Math.random() - 0.5) * 0.7;
+    }
+    move() {
+        this.x += this.vx;
+        this.y += this.vy;
+        if (this.x < 0 || this.x > canvas.width) this.vx *= -1;
+        if (this.y < 0 || this.y > canvas.height) this.vy *= -1;
+    }
+    draw() {
+        ctx.beginPath();
+        ctx.arc(this.x, this.y, 2, 0, Math.PI * 2);
+        ctx.fillStyle = "#38bdf8";
+        ctx.fill();
+    }
+}
+
+for (let i = 0; i < num; i++) particles.push(new Particle());
+
+function connect() {
+    for (let a = 0; a < particles.length; a++) {
+        for (let b = a; b < particles.length; b++) {
+            let dx = particles[a].x - particles[b].x;
+            let dy = particles[a].y - particles[b].y;
+            let dist = Math.sqrt(dx * dx + dy * dy);
+            if (dist < 120) {
+                ctx.beginPath();
+                ctx.strokeStyle = "rgba(56,189,248,0.1)";
+                ctx.lineWidth = 1;
+                ctx.moveTo(particles[a].x, particles[a].y);
+                ctx.lineTo(particles[b].x, particles[b].y);
+                ctx.stroke();
+            }
+        }
+    }
+}
+
+function animate() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    particles.forEach(p => {
+        p.move();
+        p.draw();
+    });
+    connect();
+    requestAnimationFrame(animate);
+}
+
+animate();
+
+window.addEventListener("resize", () => {
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+});
+</script>
 
 </body>
 </html>

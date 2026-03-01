@@ -11,11 +11,11 @@ body {
     margin: 0;
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
     color: #e2e8f0;
-    overflow-x: hidden;
     background: #0f172a;
+    overflow-x: hidden;
 }
 
-/* Animated canvas background */
+/* Background canvas */
 #bg {
     position: fixed;
     top: 0;
@@ -23,62 +23,73 @@ body {
     z-index: -1;
 }
 
-/* Content styling */
+/* Navigation */
 nav {
     position: fixed;
     width: 100%;
-    padding: 15px 0;
+    padding: 18px 0;
     text-align: center;
-    background: rgba(15,23,42,0.8);
-    backdrop-filter: blur(6px);
+    background: rgba(15,23,42,0.75);
+    backdrop-filter: blur(8px);
+    z-index: 1000;
 }
 nav a {
     color: #94a3b8;
-    margin: 0 15px;
+    margin: 0 20px;
     text-decoration: none;
-    font-size: 0.9rem;
+    font-size: 0.95rem;
 }
 nav a:hover { color: #38bdf8; }
 
-section {
-    max-width: 1100px;
-    margin: auto;
-    padding: 120px 20px;
-}
-
+/* Hero */
 .hero {
     text-align: center;
-    padding-top: 160px;
+    padding: 180px 20px 120px;
 }
-.hero h1 { font-size: 3rem; margin-bottom: 10px; }
+.hero h1 { font-size: 3.2rem; margin-bottom: 10px; }
 .hero h2 { font-weight: 400; color: #94a3b8; }
 
-.grid {
+/* Project Wall */
+.projects {
     display: grid;
-    gap: 25px;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+    gap: 0;
 }
 
-.card {
-    background: rgba(30,41,59,0.8);
-    border-radius: 10px;
+.project {
+    position: relative;
     overflow: hidden;
-    backdrop-filter: blur(6px);
-    transition: transform 0.2s ease;
 }
-.card:hover { transform: scale(1.03); }
 
-.card img {
+.project img {
     width: 100%;
-    height: 220px;
+    height: 500px;
     object-fit: cover;
+    transition: transform 0.4s ease;
 }
 
-.card-content { padding: 20px; }
+.project:hover img {
+    transform: scale(1.08);
+}
+
+/* Overlay */
+.overlay {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    padding: 25px;
+    background: linear-gradient(to top, rgba(0,0,0,0.7), transparent);
+    color: white;
+}
+
+.overlay h3 {
+    margin: 0;
+    font-weight: 500;
+}
 
 footer {
     text-align: center;
-    padding: 60px 20px;
+    padding: 80px 20px;
     font-size: 0.9rem;
     color: #64748b;
 }
@@ -96,27 +107,45 @@ footer {
 <section class="hero">
     <h1>Your Name</h1>
     <h2>Electrical Engineering Student</h2>
-    <p>Sophomore at Northern Illinois University building embedded and hardware systems.</p>
+    <p>Sophomore building hardware and embedded systems.</p>
 </section>
 
-<section id="projects">
-    <h3>Projects</h3>
-    <div class="grid">
-        <div class="card">
-            <img src="https://picsum.photos/600/400?1">
-            <div class="card-content">
-                <strong>Embedded Sensor System</strong>
-                <p>Microcontroller data acquisition.</p>
-            </div>
-        </div>
-        <div class="card">
-            <img src="https://picsum.photos/600/400?2">
-            <div class="card-content">
-                <strong>Power Supply Design</strong>
-                <p>Custom regulated DC system.</p>
-            </div>
+<section id="projects" class="projects">
+
+    <div class="project">
+        <img src="https://picsum.photos/1200/800?1">
+        <div class="overlay">
+            <h3>Embedded Sensor System</h3>
         </div>
     </div>
+
+    <div class="project">
+        <img src="https://picsum.photos/1200/800?2">
+        <div class="overlay">
+            <h3>Regulated Power Supply</h3>
+        </div>
+    </div>
+
+    <div class="project">
+        <img src="https://picsum.photos/1200/800?3">
+        <div class="overlay">
+            <h3>Digital Logic Hardware Build</h3>
+        </div>
+    </div>
+
+    <div class="project">
+        <img src="https://picsum.photos/1200/800?4">
+        <div class="overlay">
+            <h3>Microcontroller Control System</h3>
+        </div>
+    </div>
+
+</section>
+
+<section id="contact" style="text-align:center; padding:120px 20px;">
+    <h2>Contact</h2>
+    <p>Email: yourname@email.com</p>
+    <p>GitHub: github.com/yourusername</p>
 </section>
 
 <footer>
@@ -164,7 +193,7 @@ function connect() {
             let dist = Math.sqrt(dx * dx + dy * dy);
             if (dist < 120) {
                 ctx.beginPath();
-                ctx.strokeStyle = "rgba(56,189,248,0.1)";
+                ctx.strokeStyle = "rgba(56,189,248,0.08)";
                 ctx.lineWidth = 1;
                 ctx.moveTo(particles[a].x, particles[a].y);
                 ctx.lineTo(particles[b].x, particles[b].y);

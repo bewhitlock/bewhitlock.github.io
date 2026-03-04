@@ -9,31 +9,55 @@
     body {
       margin: 0;
       font-family: Arial, sans-serif;
-      background-color: Lavender;
+      background-color: white;
       overflow: hidden;
     }
 
     header {
+      position: absolute;
+      top: 0;
+      left: 0;
       display: flex;
-      justify-content: flex-end;
-      padding: 1vh;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1vh 2vw;
+      z-index: 10;
+      width: 100vw;
+    }
+
+    .header-btns {
+      display: flex;
+      align-items: right;
+      padding: 0 3vw;
     }
 
     .btn {
       font-size: 3vh;
       padding: 1vh 1vw;
       margin-left: 1vw;
-      background-color: #7899D4;
+      background-color: #565857;
       color: white;
-      border: 2px solid #7272AB;
+      border: 1px solid #565857;
       border-radius: 6px;
       cursor: pointer;
       transition: 0.2s ease;
     }
 
     .btn:hover {
-      background-color: #5A81C4;
+      background-color: #8A8D91;
     }
+
+    .github-btn img {
+      width: 30vh;
+      height: auto;
+      cursor: pointer;
+      transition: 0.2s ease;
+    }
+
+    .github-btn img:hover {
+      transform: scale(1.1);
+    }
+
 
     main {
       padding: 0px;
@@ -41,18 +65,20 @@
 
     .split {
       display:flex;
-      width:100vw;
+      width: 100vw;
       height: 100vh;
     }
 
     .left {
       flex: 0 0 50vw;
-      background:linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('images/car.jpeg');
+      background:linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('images/car.jpeg');
       background-size: cover;
       background-position: center;
-      text-align: left;
-      margin-top: -9vh;
-      height: 105vh; 
+      color: white;
+    
+      display: flex;
+      justify-content: center;
+      align-items: center;
     }
 
     .right {
@@ -68,14 +94,19 @@
 <body>
 
   <header>
-    <button class="btn" onclick="window.open('cv.pdf', '_blank')">CV</button>
-    <button class="btn" onclick="window.location.href='https://google.com';">Projects</button>
+    <img src=images/niu-reverse-logo.svg alt="Niu Logo" width=200>
+      <div class=header-btns>
+        <button class="btn" onclick="window.open('cv.pdf', '_blank')">CV</button>
+        <button class="btn" onclick="window.location.href='https://google.com';">Projects</button>
+      </div>
   </header>
 
   <main>
     <div class=split>
       <div class=left>
-        <p>This is a test.</p>
+        <a href="https://github.com/bewhitlock" target="_blank" class="github-btn">
+          <img src="images/GitHub_Lockup_White_Clearspace.png" alt="GitHub">
+        </a>
       </div>
       <div class=right>
         <h1>Ben Whitlock</h1>

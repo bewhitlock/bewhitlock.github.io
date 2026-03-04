@@ -11,6 +11,7 @@
       font-family: Arial, sans-serif;
       background-color: white;
       overflow: hidden;
+      color:#515152;
     }
 
     header {
@@ -22,12 +23,11 @@
       align-items: center;
       padding: 1vh 2vw;
       z-index: 10;
-      width: 100vw;
+      width: 50vw;
     }
-
+    
     .header-btns {
       display: flex;
-      align-items: right;
       padding: 0 3vw;
     }
 
@@ -35,16 +35,16 @@
       font-size: 3vh;
       padding: 1vh 1vw;
       margin-left: 1vw;
-      background-color: #565857;
+      background-color: #9B9B93;
       color: white;
-      border: 1px solid #565857;
+      border: 1px solid #FFFFFF;
       border-radius: 6px;
       cursor: pointer;
       transition: 0.2s ease;
     }
 
     .btn:hover {
-      background-color: #8A8D91;
+      background-color: #7F7F76;
     }
 
     .github-btn img {
@@ -58,7 +58,6 @@
       transform: scale(1.1);
     }
 
-
     main {
       padding: 0px;
     }
@@ -71,7 +70,7 @@
 
     .left {
       flex: 0 0 50vw;
-      background:linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('images/car.jpeg');
+      background:linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('images/car.jpeg');
       background-size: cover;
       background-position: center;
       color: white;
@@ -83,9 +82,15 @@
 
     .right {
       max-width: 50vw;
-      margin-right: 10px;
-      margin-left: 10px;
-      text-align: left;
+      margin-right: 10vw;
+      margin-left: 10vw;
+      text-align: center;
+    }
+
+    .portrait {
+      display: flex;
+      justify-content: center;
+      margin-top: 5vh;
     }
 
   </style>
@@ -109,13 +114,14 @@
         </a>
       </div>
       <div class=right>
+        <br>
         <h1>Ben Whitlock</h1>
         <hr>
-        <p>
-          Franz Ferdinand was the eldest son of Archduke Karl Ludwig of Austria, the younger brother of Emperor 
-          Franz Joseph I of Austria. Following the death of Crown Prince Rudolf in 1889 and the death of Karl Ludwig
-          in 1896, Franz Ferdinand became the heir presumptive to the Austro-Hungarian throne...
-        </p>
+          <div class=portrait>
+            <img src="images/portrait.jpeg" width=300 alt="headshot">
+          </div>
+        <p> I'm an undergrad pursuing electrical engineering at NIU. I'm interested in control systems, PCB's, and FPGA's.
+            I love to learn, and I want to try as many new things as possible.</p>
       </div>
     </div>
   </main>

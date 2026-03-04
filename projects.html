@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ben Whitlock</title>
+
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      color:#515152;
+    }
+
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1vh 2vw;
+      z-index: 10;
+      width: 100vw;
+      background: rgba(0, 0, 0, 0.1); /* overlay effect */
+      backdrop-filter: blur(1px);      /* glass effect */
+    }
+    
+    .header-btns {
+      display: flex;
+      padding: 0 3vw;
+    }
+
+    .btn {
+      font-size: 3vh;
+      padding: 1vh 1vw;
+      margin-left: 1vw;
+      background-color: #9B9B93;
+      color: white;
+      border: 1px solid #FFFFFF;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: 0.2s ease;
+    }
+
+    .btn:hover {
+      background-color: #7F7F76;
+    }
+
+    main {
+    }
+
+  </style>
+</head>
+
+<body>
+
+  <header>
+    <img src=images/niu-reverse-logo.svg alt="Niu Logo" width=150>
+      <div class=header-btns>
+        <button class="btn" onclick="window.open('cv.pdf', '_blank')">CV</button>
+        <button class="btn" onclick="window.location.href='projects.html';">Projects</button>
+        <button class="btn" onclick="window.location.href='index.html';">Home</button>
+      </div>
+  </header>
+
+  <main>
+      <h1>My Projects</h1>
+  </main>
+</body>
+</html>

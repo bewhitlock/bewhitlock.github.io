@@ -10,19 +10,19 @@
       margin: 0;
       font-family: Arial, sans-serif;
       background-color: Lavender;
-      text-align: left;
+      overflow: hidden;
     }
 
     header {
       display: flex;
       justify-content: flex-end;
-      padding: 20px;
+      padding: 1vh;
     }
 
     .btn {
-      font-size: 30px;
-      padding: 8px 14px;
-      margin-left: 10px;
+      font-size: 3vh;
+      padding: 1vh 1vw;
+      margin-left: 1vw;
       background-color: #7899D4;
       color: white;
       border: 2px solid #7272AB;
@@ -37,9 +37,29 @@
 
     main {
       padding: 0px;
+    }
+
+    .split {
+      display:flex;
+      width:100vw;
+      height: 100vh;
+    }
+
+    .left {
+      flex: 0 0 60vw;
+      background-image:url('images/vga_close.jpeg');
+      background-size: cover;
+      background-position: center;
+      text-align: left;
+      margin-top: -9vh;
+      height: 105vh; 
+    }
+
+    .right {
       max-width: 40vw;
-      margin-right: 40px;
-      margin-left: auto;
+      margin-right: 10px;
+      margin-left: 10px;
+      text-align: left;
     }
 
   </style>
@@ -53,14 +73,20 @@
   </header>
 
   <main>
-    <h1>Ben Whitlock</h1>
-    <hr>
-    <img src="images/vga_close.jpeg" alt="A beautiful scenery" width=300 height=400/>
-    <p>
-      Franz Ferdinand was the eldest son of Archduke Karl Ludwig of Austria, the younger brother of Emperor 
-      Franz Joseph I of Austria. Following the death of Crown Prince Rudolf in 1889 and the death of Karl Ludwig
-      in 1896, Franz Ferdinand became the heir presumptive to the Austro-Hungarian throne...
-    </p>
+    <div class=split>
+      <div class=left>
+        <p>This is a test.</p>
+      </div>
+      <div class=right>
+        <h1>Ben Whitlock</h1>
+        <hr>
+        <p>
+          Franz Ferdinand was the eldest son of Archduke Karl Ludwig of Austria, the younger brother of Emperor 
+          Franz Joseph I of Austria. Following the death of Crown Prince Rudolf in 1889 and the death of Karl Ludwig
+          in 1896, Franz Ferdinand became the heir presumptive to the Austro-Hungarian throne...
+        </p>
+      </div>
+    </div>
   </main>
 </body>
 </html>
